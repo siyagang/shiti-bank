@@ -2,9 +2,10 @@
 
 Excel 里先整理成表格，然后「另存为 → CSV UTF-8」，列名照下面写（顺序随意，多余的列忽略）：
 
-  topicId | type | difficulty | prompt | answer | explanation | choices | verify | accept | unordered
+  topicId | region | type | difficulty | prompt | answer | explanation | choices | verify | accept | unordered
 
-  - topicId      必填，必须已存在于 data/topics.json，如 cnm_p001
+  - topicId      必填，必须已存在于 data/topics.json，如 zk_math_g9_01
+  - region       选填，省份名，如「江苏」；练习页的「地区」筛选靠它
   - type         numeric / choice / short / self
   - difficulty   basic / standard / advanced，留空默认 basic
   - choices      仅选择题，用 | 分隔：三角形|圆|长方形|平行四边形，也可写 A:三角形|B:圆|…
@@ -27,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from qbank import load_questions, load_topics, save_questions  # noqa: E402
 from add_question import append_questions  # noqa: E402
 
-COLUMNS = ("topicId", "type", "difficulty", "prompt", "answer", "explanation",
+COLUMNS = ("topicId", "region", "type", "difficulty", "prompt", "answer", "explanation",
            "choices", "verify", "accept", "unordered")
 
 

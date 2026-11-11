@@ -24,7 +24,7 @@ REQUIRED_FIELDS = ("id", "topicId", "difficulty", "type", "prompt", "answer", "e
 ALLOWED_FIELDS = {
     "id", "topicId", "difficulty", "type", "prompt", "answer", "explanation",
     "choices", "figure", "hideChoiceText", "accept", "verify", "unordered",
-    "tags", "source", "note",
+    "tags", "source", "note", "region",
 }
 
 ID_RE = re.compile(r"^(?P<topic>.+)_q(?P<n>\d+)$")

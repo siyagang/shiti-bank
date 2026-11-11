@@ -6,7 +6,7 @@
        python scripts/add_question.py
 
 2) 一条 JSON（适合从别处复制粘贴，或让 AI 生成）：
-       python scripts/add_question.py --json '{"topicId":"cnm_p001","type":"numeric","prompt":"5+1=?","answer":"6","explanation":"5 再添 1 是 6","verify":"5+1"}'
+       python scripts/add_question.py --json '{"topicId":"zk_math_g9_01","type":"numeric","prompt":"5+1=?","answer":"6","explanation":"5 再添 1 是 6","verify":"5+1"}'
 
 3) 一个 JSON 文件（数组或单个对象，可一次导入多题）：
        python scripts/add_question.py --file new_questions.json

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>我的中小学题库 · 练习</title>
+<title>全国中考题库 · 练习</title>
 <style>
   :root{
     --bg:#f5f6f8; --card:#ffffff; --line:#e6e8ec; --ink:#1c2026; --ink-2:#5b6472; --ink-3:#8b94a3;
@@ -111,7 +111,7 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>我的中小学题库</h1>
+    <h1>全国中考题库</h1>
     <span class="sub" id="bankInfo">加载中…</span>
   </header>
 
@@ -128,7 +128,7 @@
 
   <!-- 设置 -->
   <section class="card" id="setup">
-    <div class="row"><span class="label">题库</span><div id="banks" class="row" style="margin:0"></div></div>
+    <div class="row"><span class="label">地区</span><select id="region"><option value="">全部</option></select></div>
     <div class="row"><span class="label">学科</span><div id="subjects" class="row" style="margin:0"></div></div>
     <div class="row"><span class="label">年级</span><select id="grade"><option value="">全部</option></select></div>
     <div class="row"><span class="label">难度</span><div id="diffs" class="row" style="margin:0">
@@ -194,7 +194,6 @@
   const SUBJECT_CN = {math:'数学', chinese:'语文', english:'英语', physics:'物理', chemistry:'化学',
                       biology:'生物', history:'历史', geography:'地理', science:'科学', morality:'道德与法治'};
   const DIFF_CN = {basic:'基础', standard:'常规', advanced:'进阶', challenge:'挑战'};
-  const BANK_CN = {local:'自建题', external:'外部题库'};
   // 学科顺序按课时习惯排，而不是按英文键名排序
   const SUBJECT_ORDER = ['math','chinese','english','physics','chemistry','biology','history','geography','morality','science'];
   const orderOf = (a, b) => {
@@ -246,23 +245,16 @@
     refreshWrongBtn();
   }
 
-  const bankOf = q => (q.source ? 'external' : 'local');
+  const regionOf = q => q.region || '';
   const subjectOf = q => (topicMap[q.topicId] && topicMap[q.topicId].subject) || 'other';
   const gradeOf = q => (topicMap[q.topicId] && topicMap[q.topicId].grade) || 0;
 
   function buildFilters() {
-    const banks = [...new Set(QUESTIONS.map(bankOf))];
-    const bankBox = $('banks');
-    bankBox.innerHTML = '';
-    const mkBank = (val, text) => {
-      const b = document.createElement('button');
-      b.className = 'chip' + (val === '' ? ' on' : '');
-      b.dataset.b = val; b.textContent = text;
-      b.onclick = () => { bankBox.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); b.classList.add('on'); updatePoolInfo(); };
-      bankBox.appendChild(b);
-    };
-    mkBank('', '全部');
-    ['local', 'external'].filter(b => banks.includes(b)).forEach(b => mkBank(b, BANK_CN[b] || b));
+    const regions = [...new Set(QUESTIONS.map(regionOf))].filter(Boolean)
+      .sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
+    $('region').innerHTML = '<option value="">全部</option>' +
+      regions.map(r => `<option value="${r}">${r}</option>`).join('');
+    $('region').onchange = updatePoolInfo;
 
     const subjects = [...new Set(QUESTIONS.map(subjectOf))];
     const box = $('subjects');
@@ -292,7 +284,7 @@
   }
 
   const curFilter = () => ({
-    bank: (document.querySelector('#banks .chip.on') || {}).dataset?.b || '',
+    region: $('region').value,
     subject: (document.querySelector('#subjects .chip.on') || {}).dataset?.s || '',
     grade: $('grade').value,
     difficulty: (document.querySelector('#diffs .chip.on') || {}).dataset?.d || ''
@@ -301,7 +293,7 @@
   function filtered() {
     const f = curFilter();
     return QUESTIONS.filter(q =>
-      (!f.bank || bankOf(q) === f.bank) &&
+      (!f.region || regionOf(q) === f.region) &&
       (!f.subject || subjectOf(q) === f.subject) &&
       (!f.grade || String(gradeOf(q)) === f.grade) &&
       (!f.difficulty || q.difficulty === f.difficulty));
@@ -403,6 +395,7 @@
     const t = topicMap[q.topicId] || {};
     $('qTags').innerHTML = [
       SUBJECT_CN[t.subject] || '',
+      q.region ? `${q.region}·中考` : '',
       t.grade ? `${t.grade}年级${t.semester || ''}` : '',
       t.name || '',
       DIFF_CN[q.difficulty] || q.difficulty || ''

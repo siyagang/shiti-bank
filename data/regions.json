@@ -1,0 +1,560 @@
+[
+  {
+    "id": "beijing",
+    "name": "北京",
+    "type": "直辖市",
+    "short": "京",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "tianjin",
+    "name": "天津",
+    "type": "直辖市",
+    "short": "津",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "hebei",
+    "name": "河北",
+    "type": "省",
+    "short": "冀",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "shanxi",
+    "name": "山西",
+    "type": "省",
+    "short": "晋",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "neimenggu",
+    "name": "内蒙古",
+    "type": "自治区",
+    "short": "内蒙古",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "liaoning",
+    "name": "辽宁",
+    "type": "省",
+    "short": "辽",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "jilin",
+    "name": "吉林",
+    "type": "省",
+    "short": "吉",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "heilongjiang",
+    "name": "黑龙江",
+    "type": "省",
+    "short": "黑",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "shanghai",
+    "name": "上海",
+    "type": "直辖市",
+    "short": "沪",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "jiangsu",
+    "name": "江苏",
+    "type": "省",
+    "short": "苏",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "zhejiang",
+    "name": "浙江",
+    "type": "省",
+    "short": "浙",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "anhui",
+    "name": "安徽",
+    "type": "省",
+    "short": "皖",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "fujian",
+    "name": "福建",
+    "type": "省",
+    "short": "闽",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "jiangxi",
+    "name": "江西",
+    "type": "省",
+    "short": "赣",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "shandong",
+    "name": "山东",
+    "type": "省",
+    "short": "鲁",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "henan",
+    "name": "河南",
+    "type": "省",
+    "short": "豫",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "hubei",
+    "name": "湖北",
+    "type": "省",
+    "short": "鄂",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "hunan",
+    "name": "湖南",
+    "type": "省",
+    "short": "湘",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "guangdong",
+    "name": "广东",
+    "type": "省",
+    "short": "粤",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "guangxi",
+    "name": "广西",
+    "type": "自治区",
+    "short": "桂",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "hainan",
+    "name": "海南",
+    "type": "省",
+    "short": "琼",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "chongqing",
+    "name": "重庆",
+    "type": "直辖市",
+    "short": "渝",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "sichuan",
+    "name": "四川",
+    "type": "省",
+    "short": "川",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "guizhou",
+    "name": "贵州",
+    "type": "省",
+    "short": "黔",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "yunnan",
+    "name": "云南",
+    "type": "省",
+    "short": "滇",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "xizang",
+    "name": "西藏",
+    "type": "自治区",
+    "short": "藏",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "shaanxi",
+    "name": "陕西",
+    "type": "省",
+    "short": "陕",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "gansu",
+    "name": "甘肃",
+    "type": "省",
+    "short": "甘",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "qinghai",
+    "name": "青海",
+    "type": "省",
+    "short": "青",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "ningxia",
+    "name": "宁夏",
+    "type": "自治区",
+    "short": "宁",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  },
+  {
+    "id": "xinjiang",
+    "name": "新疆",
+    "type": "自治区",
+    "short": "新",
+    "subjects": [
+      "chinese",
+      "math",
+      "english",
+      "physics",
+      "chemistry",
+      "biology",
+      "history",
+      "geography",
+      "morality"
+    ],
+    "note": "地理、生物一般在八年级结业考试，成绩计入中考的方式各省不同；本库按知识点所属年级归类，供按年级刷题使用。"
+  }
+]
