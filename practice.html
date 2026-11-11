@@ -83,7 +83,9 @@
   .fb b{font-size:15px}
   .fb .ans{margin-top:6px; color:var(--ink-2)}
   .fb .exp{margin-top:8px; color:var(--ink-2)}
-  .foot{display:flex; justify-content:space-between; align-items:center; margin-top:18px; gap:10px}
+  .foot{display:flex; justify-content:space-between; align-items:center; margin-top:18px; gap:10px; flex-wrap:wrap}
+  .foot .hint{flex:1 1 120px; min-width:0}
+  .foot > div{flex:none}
   .hint{color:var(--ink-3); font-size:12.5px}
   .stat{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:8px 0 18px}
   .stat div{background:#fafbfc; border:1px solid var(--line); border-radius:12px; padding:14px; text-align:center}
