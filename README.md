@@ -37,22 +37,26 @@
 
 | 地址 | 说明 |
 |---|---|
-| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/q.json` | **推荐**。最短、无参数、`Content-Type: application/json` |
-| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/data/questions.json` | 内容相同，规范路径版 |
+| `https://siyagang.github.io/shiti-bank/q.json` | **推荐**。GitHub Pages 直链，无参数、`application/json`、更新即时生效 |
+| `https://siyagang.github.io/shiti-bank/data/questions.json` | 内容相同，规范路径版 |
+| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@v1.0/q.json` | jsDelivr 快照版，按 tag 固定内容；国内访问更快，但更新要等新 tag |
 | `https://raw.githubusercontent.com/siyagang/shiti-bank/main/data/questions.json` | GitHub 原始直链，`Content-Type` 是 `text/plain`，部分 App 会因此判成「不是 JSON」，不推荐 |
+
+> jsDelivr 的 `@main`（分支）地址有缓存，可能几小时到一天都是旧内容，所以这里不再推荐；要看最新数据请用 Pages 地址。
 
 响应是 **2611 条题目的 JSON 数组**，字段说明见 `docs/questions.md`。
 
-**四选项 App 版（1515 题，选择题形态）**
+**四选项 App 版（2364 题，选择题形态）**
 
 | 地址 | 说明 |
 |---|---|
-| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/q_app.json` | 给只吃「题干 + 四个选项 + 正确项下标」的 App / 电视端用 |
+| `https://siyagang.github.io/shiti-bank/q_app.json` | 给只吃「题干 + 四个选项 + 正确项下标」的 App / 电视端用 |
+| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@v1.0/q_app.json` | 同上，jsDelivr 快照版 |
 
 这个文件跟主库不是同一个结构，是给刷题类 App 的另一种写法：
 
 ```json
-{"version":1, "count":1515, "questions":[
+{"version":1, "count":2364, "questions":[
   {"id":"zk_math_g7_01_q1", "grade":7, "subject":"math", "topic":"有理数的运算",
    "stem":"计算：-8 + 3 × (-8) 的值是（　）。",
    "options":["-32","-33","-31","32"], "answerIndex":0,
@@ -70,13 +74,14 @@
 
 | 地址 | 说明 |
 |---|---|
-| `https://shiti-bank.app.workbuddy.host/?sharecode=GJYV32MJU5` | 手机 / 电脑打开的交互练习页，**返回 HTML，不能当数据源** |
+| `https://siyagang.github.io/shiti-bank/practice.html` | **推荐**。GitHub Pages 版练习页，随仓库更新，手机/电脑直接打开 |
+| `https://shiti-bank.app.workbuddy.host/?sharecode=GJYV32MJU5` | 早前发布的托管版练习页，是固定快照，**返回 HTML，不能当数据源** |
 | `https://shiti-bank.app.workbuddy.host/data/questions.json?sharecode=GJYV32MJU5` | 同一站点的 JSON 直链，`sharecode` 不能省，去掉直接 403「链接不完整」 |
 
 ### 三、改题怎么生效
 
 改 `data/questions.json` → 跑 `python scripts/build_zhongkao.py`（会顺带同步根目录的 `q.json`）→ `git push`。
-jsDelivr 有缓存：`@main` 通常在几分钟内刷新；急用可以加 `?v=时间戳` 绕过缓存，或请求 `https://purge.jsdelivr.net/gh/siyagang/shiti-bank@main/q.json` 手动清。
+jsDelivr 的分支地址（`@main`）缓存刷新不可靠，实测可能长期停在旧内容，所以日常取数请走上面的 Pages 地址；需要「内容固定不变的快照」时用 `@v1.0` 这类 tag 地址。
 
 > 根目录的 `q.json` 只是 `data/questions.json` 的副本，为了 CDN 地址更短、电视遥控器好输入；改数据请改 `data/questions.json`。
 
