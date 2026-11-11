@@ -64,6 +64,10 @@
   }
   .choice .txt{flex:1}
   .choice .figure{max-width:120px}
+  .choices.pics{grid-template-columns:1fr 1fr}
+  .choices.pics .choice{flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:16px 14px}
+  .choices.pics .figure{max-width:150px}
+  .choices.pics .key{width:22px; height:22px; font-size:12px}
   .choice.on{border-color:var(--brand); background:var(--brand-soft)}
   .choice.on .key{background:var(--brand); color:#fff}
   .choice.ok{border-color:var(--ok); background:var(--ok-soft)}
@@ -384,6 +388,7 @@
     body.innerHTML = '';
     if (q.type === 'choice') {
       const box = document.createElement('div'); box.className = 'choices';
+      if (q.hideChoiceText) box.classList.add('pics');
       (q.choices || []).forEach(c => {
         const b = document.createElement('button');
         b.className = 'choice'; b.type = 'button'; b.dataset.key = c.key;
@@ -448,7 +453,7 @@
       ? `${q.answer}. ${((q.choices || []).find(c => c.key === q.answer) || {}).text || ''}`
       : q.answer;
 
-    if (q.type === 'self' && !revealOnly) {
+    if (q.type === 'self') {
       fb.style.background = '#f4f6fa'; fb.style.color = '#3a4351';
       fb.innerHTML = `<b>参考答案</b><div class="ans">${esc(ansText)}</div>
         <div class="exp">${esc(q.explanation || '')}</div>
@@ -459,6 +464,7 @@
       $('selfOk').onclick = () => record(q, input, true, true);
       $('selfBad').onclick = () => record(q, input, false, true);
       $('submitBtn').hidden = true;
+      $('showBtn').hidden = true;
       return;
     }
 
