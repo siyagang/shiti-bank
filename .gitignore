@@ -5,3 +5,7 @@ Thumbs.db
 _check.js
 _test.js
 .venv/
+data/_source/
+_*.html
+_*.js
+*.png

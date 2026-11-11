@@ -193,6 +193,12 @@
   const SUBJECT_CN = {math:'数学', chinese:'语文', english:'英语', physics:'物理', chemistry:'化学',
                       biology:'生物', history:'历史', geography:'地理', science:'科学', morality:'道德与法治'};
   const DIFF_CN = {basic:'基础', standard:'常规', advanced:'进阶', challenge:'挑战'};
+  // 学科顺序按课时习惯排，而不是按英文键名排序
+  const SUBJECT_ORDER = ['math','chinese','english','physics','chemistry','biology','history','geography','morality','science'];
+  const orderOf = (a, b) => {
+    const ia = SUBJECT_ORDER.indexOf(a), ib = SUBJECT_ORDER.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+  };
   const STORE_WRONG = 'qbank.wrong.v1';
 
   let QUESTIONS = [], TOPICS = [], topicMap = {};
@@ -253,7 +259,7 @@
       box.appendChild(b);
     };
     mk('', '全部');
-    subjects.sort().forEach(s => mk(s, SUBJECT_CN[s] || s));
+    subjects.sort(orderOf).forEach(s => mk(s, SUBJECT_CN[s] || s));
 
     const grades = [...new Set(QUESTIONS.map(gradeOf))].filter(Boolean).sort((a,b) => a-b);
     $('grade').innerHTML = '<option value="">全部</option>' +
