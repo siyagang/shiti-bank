@@ -563,7 +563,7 @@
     $('rRight').textContent = right;
     $('rRate').textContent = rec.length ? Math.round(right / rec.length * 100) + '%' : '—';
     $('rHint').textContent = rec.length
-      ? (right === rec.length ? '全对，可以加难度或换一批题了。' : '错题已自动记进错题本，下次从「错题重练」进。')
+      ? (right === rec.length ? '全对，可以换一批题再练。' : '错题已自动记进错题本，下次从「错题重练」进。')
       : '这一轮还没答题。';
 
     const wrongs = rec.filter(r => !r.ok);
