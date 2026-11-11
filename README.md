@@ -25,6 +25,32 @@
 
 如果你想用真正的历年真题：把试卷（PDF / Word / 图片都行）给我，我按同一套字段拆成 JSON 替换进去，`region` 标成对应省份和年份即可。
 
+## 在线访问（仓库已公开，所有人可只读获取）
+
+### 一、题库 JSON —— 给 App / 电视端 / 脚本加载
+
+| 地址 | 说明 |
+|---|---|
+| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/q.json` | **推荐**。最短、无参数、`Content-Type: application/json` |
+| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/data/questions.json` | 内容相同，规范路径版 |
+| `https://raw.githubusercontent.com/siyagang/shiti-bank/main/data/questions.json` | GitHub 原始直链，`Content-Type` 是 `text/plain`，部分 App 会因此判成「不是 JSON」，不推荐 |
+
+响应是 **1604 条题目的 JSON 数组**（约 780 KB），字段说明见 `docs/questions.md`。
+
+### 二、练习页（网页界面）
+
+| 地址 | 说明 |
+|---|---|
+| `https://shiti-bank.app.workbuddy.host/?sharecode=GJYV32MJU5` | 手机 / 电脑打开的交互练习页，**返回 HTML，不能当数据源** |
+| `https://shiti-bank.app.workbuddy.host/data/questions.json?sharecode=GJYV32MJU5` | 同一站点的 JSON 直链，`sharecode` 不能省，去掉直接 403「链接不完整」 |
+
+### 三、改题怎么生效
+
+改 `data/questions.json` → 跑 `python scripts/build_zhongkao.py`（会顺带同步根目录的 `q.json`）→ `git push`。
+jsDelivr 有缓存：`@main` 通常在几分钟内刷新；急用可以加 `?v=时间戳` 绕过缓存，或请求 `https://purge.jsdelivr.net/gh/siyagang/shiti-bank@main/q.json` 手动清。
+
+> 根目录的 `q.json` 只是 `data/questions.json` 的副本，为了 CDN 地址更短、电视遥控器好输入；改数据请改 `data/questions.json`。
+
 ## 目录
 
 ```

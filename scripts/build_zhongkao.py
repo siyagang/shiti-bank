@@ -25,6 +25,7 @@ from zk_humanities import ENGLISH, GEOGRAPHY, HISTORY  # noqa: E402
 from zk_science_liberal import BIOLOGY, MORALITY  # noqa: E402
 
 REGIONS_PATH = QUESTIONS_PATH.parent / "regions.json"
+ROOT_Q_PATH = QUESTIONS_PATH.parent.parent / "q.json"
 DIFFS = ("basic", "standard", "advanced")
 
 
@@ -714,6 +715,8 @@ def main() -> int:
     # 写盘
     TOPICS_PATH.write_text(json.dumps(topics, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     QUESTIONS_PATH.write_text(json.dumps(questions, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # 根目录 q.json 是 questions.json 的副本，供手机/电视 App 用更短的地址取数据，勿手改
+    ROOT_Q_PATH.write_text(QUESTIONS_PATH.read_text(encoding="utf-8"), encoding="utf-8")
 
     regions = [{
         "id": pid,
