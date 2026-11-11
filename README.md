@@ -51,6 +51,15 @@ jsDelivr 有缓存：`@main` 通常在几分钟内刷新；急用可以加 `?v=�
 
 > 根目录的 `q.json` 只是 `data/questions.json` 的副本，为了 CDN 地址更短、电视遥控器好输入；改数据请改 `data/questions.json`。
 
+如果 `git push` 报 `schannel: failed to receive handshake` 或 `CONNECT tunnel failed, response 502`（`github.com:443` 被网络挡住，但 `api.github.com` 正常），可以用 `scripts/push_via_api.py` 走 API 提交：
+
+```bash
+GH_TOKEN=$(printf "protocol=https\nhost=github.com\n\n" | git credential fill | sed -n 's/^password=//p') \
+  python scripts/push_via_api.py "提交说明"
+```
+
+网络恢复后执行 `git fetch origin && git reset --hard origin/main` 把本地对齐。
+
 ## 目录
 
 ```
