@@ -27,32 +27,35 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from qbank import (  # noqa: E402
-    DATA_DIR, QUESTIONS_PATH, TOPICS_PATH, load_questions, load_topics,
+    DATA_DIR, ID_RE, QUESTIONS_PATH, TOPICS_PATH, load_questions, load_topics,
     parse_number, save_questions,
 )
 from verify_questions import verify_one  # noqa: E402
 
 SOURCE_DIR = DATA_DIR / "_source"
+MAP_PATH = DATA_DIR / "import_map.json"
 SOURCE_URLS = {
     "questions.json": "https://cdn.jsdelivr.net/gh/xiaoyang111222/cn-math-taxonomy@main/data/questions.json",
     "topics.json": "https://cdn.jsdelivr.net/gh/xiaoyang111222/cn-math-taxonomy@main/data/topics.json",
 }
 SOURCE_LABEL = "cn-math-taxonomy 开源题库（中学）"
 
-# 学科配额：(subject, stage) -> 题数上限
+# 学科配额：(subject, stage) -> 本轮最多再导入多少题。
+# 数值只是上限，实际取多少由「来源里还剩多少能核验的题」和 PER_TOPIC_CAP 决定；
+# 想少导就把数字调小。高中暂设为 0，表示只扩初中（要扩高中就改这里）。
 QUOTAS = {
-    ("math", "j"): 160,
-    ("math", "h"): 100,
-    ("physics", "j"): 80,
-    ("physics", "h"): 60,
-    ("chemistry", "j"): 70,
-    ("english", "j"): 60,
-    ("english", "h"): 40,
-    ("chinese", "j"): 60,
-    ("history", "j"): 40,
-    ("geography", "j"): 40,
-    ("biology", "j"): 40,
-    ("morality", "j"): 30,
+    ("math", "j"): 900,
+    ("chinese", "j"): 900,
+    ("english", "j"): 1300,
+    ("physics", "j"): 400,
+    ("chemistry", "j"): 220,
+    ("biology", "j"): 280,
+    ("geography", "j"): 260,
+    ("history", "j"): 620,
+    ("morality", "j"): 460,
+    ("math", "h"): 0,
+    ("physics", "h"): 0,
+    ("english", "h"): 0,
 }
 PER_TOPIC_CAP = 4
 
@@ -203,21 +206,31 @@ def pick(pool: dict[str, list[dict]]) -> list[dict]:
     return taken
 
 
-def build_topics(taken: list[dict], src_topics: list[dict], our_topics: list[dict]):
-    """把被选中的题所属知识点转成本地格式，处理 id 冲突。"""
+def load_map() -> dict[str, str]:
+    """来源 topic id → 本地 topic id 的稳定映射，重复导入时不换号。"""
+    if MAP_PATH.exists():
+        return json.loads(MAP_PATH.read_text(encoding="utf-8"))
+    return {}
+
+
+def build_topics(taken: list[dict], src_topics: list[dict], our_topics: list[dict],
+                 id_map: dict[str, str]):
+    """把被选中的题所属知识点转成本地格式；已导入过的沿用原 id。"""
     src = {t["id"]: t for t in src_topics}
     used_ids = {t["id"] for t in our_topics}
     rename: dict[str, str] = {}
     new_topics = []
 
     for tid in sorted({q["topicId"] for q in taken}):
+        if tid in id_map and id_map[tid] in used_ids:  # 上一轮已经建过这个知识点
+            rename[tid] = id_map[tid]
+            continue
         t = src[tid]
         new_id = tid
-        if new_id in used_ids:  # 与本地点位撞号：加后缀，避免覆盖自己的知识点
-            new_id = f"{tid}x"
-            while new_id in used_ids:
-                new_id += "x"
+        while new_id in used_ids:  # 与本地点位撞号：加后缀，避免覆盖自己的知识点
+            new_id += "x"
         used_ids.add(new_id)
+        id_map[tid] = new_id
         rename[tid] = new_id
         new_topics.append({
             "id": new_id,
@@ -238,11 +251,17 @@ def build_topics(taken: list[dict], src_topics: list[dict], our_topics: list[dic
 def build_questions(taken: list[dict], rename: dict[str, str], our_questions: list[dict]):
     out = []
     counter = Counter()
+    max_n: dict[str, int] = {}
+    for q in our_questions:  # 已有题的最大题号，新题从它后面接
+        m = ID_RE.match(str(q.get("id", "")))
+        if m:
+            max_n[m.group("topic")] = max(max_n.get(m.group("topic"), 0), int(m.group("n")))
     for q in taken:
         tid = rename[q["topicId"]]
         counter[tid] += 1
+        base = max(max_n.get(tid, 0), 100)
         item = {
-            "id": f"{tid}_q{100 + counter[tid]}",
+            "id": f"{tid}_q{base + counter[tid]}",
             "topicId": tid,
             "difficulty": q["difficulty"],
             "type": q["type"],
@@ -293,7 +312,16 @@ def main() -> int:
         print("\n（未写入；加 --write 生效）")
         return 0
 
-    new_topics, rename = build_topics(taken, src_topics, our_topics)
+    id_map = load_map()
+    src_topic_ids = {t["id"] for t in src_topics}
+    # 第一轮导入没有 manifest：用「已导入题所属知识点」反推来源 id（撞号加过 x 的去掉后缀）
+    for lid in {q["topicId"] for q in our_questions if q.get("source")}:
+        if lid in src_topic_ids:
+            id_map.setdefault(lid, lid)
+        elif lid.rstrip("x") in src_topic_ids:
+            id_map.setdefault(lid.rstrip("x"), lid)
+
+    new_topics, rename = build_topics(taken, src_topics, our_topics, id_map)
     new_questions = build_questions(taken, rename, our_questions)
     used = {q["topicId"] for q in new_questions}
     new_topics = [t for t in new_topics if t["id"] in used]  # 没题的知识点不落库
@@ -302,6 +330,7 @@ def main() -> int:
     questions_all = our_questions + new_questions
     TOPICS_PATH.write_text(json.dumps(topics_all, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     save_questions(questions_all)
+    MAP_PATH.write_text(json.dumps(id_map, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"\n写入完成：题目 {len(our_questions)} 题 → {len(questions_all)} 题；"
           f"知识点 {len(our_topics)} 个 → {len(topics_all)} 个")
     return 0
