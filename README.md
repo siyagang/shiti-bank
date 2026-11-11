@@ -29,8 +29,11 @@
 │  └─ qbank.py                # 上面几个共用的工具
 ├─ templates/
 │  └─ 新题模板.csv             # 批量导入的列名示例
-└─ practice.html              # 练习页
+├─ practice.html              # 练习页
+└─ 打开练习页.bat             # Windows 一键起本地服务并打开练习页
 ```
+
+> 本仓库已推送到 `github.com/siyagang/shiti-bank`（Private）。下面的建仓步骤留作换新仓库时的参考。
 
 ## 一、把它变成你的 GitHub 仓库
 
@@ -62,11 +65,17 @@ gh repo create shiti-bank --private --source=. --push
 ```bash
 python scripts/validate.py          # 格式校验，出错会列出来
 python scripts/verify_questions.py  # 答案核验，mismatch 必须为 0
-
-python -m http.server 8000          # 然后打开 http://localhost:8000/practice.html
 ```
 
-> 直接双击 `practice.html` 会因为浏览器限制读不到本地 JSON，页面会提示你手动选文件；用上面的 http.server 或部署到 Pages 就没有这个问题。
+> 最省事：**双击 `打开练习页.bat`**，它会在后台起 `http.server` 并自动打开浏览器。
+>
+> 手动的话：
+>
+> ```bash
+> python -m http.server 8000          # 然后打开 http://localhost:8000/practice.html
+> ```
+>
+> 直接双击 `practice.html` 会因为浏览器限制读不到本地 JSON，页面会提示你手动选文件；用上面的方式或部署到 Pages 就没有这个问题。
 
 ## 三、往里加题
 
