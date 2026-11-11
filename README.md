@@ -33,6 +33,8 @@
 
 ### 一、题库 JSON —— 给 App / 电视端 / 脚本加载
 
+**主库（全题型，1604 题）**
+
 | 地址 | 说明 |
 |---|---|
 | `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/q.json` | **推荐**。最短、无参数、`Content-Type: application/json` |
@@ -40,6 +42,29 @@
 | `https://raw.githubusercontent.com/siyagang/shiti-bank/main/data/questions.json` | GitHub 原始直链，`Content-Type` 是 `text/plain`，部分 App 会因此判成「不是 JSON」，不推荐 |
 
 响应是 **1604 条题目的 JSON 数组**（约 780 KB），字段说明见 `docs/questions.md`。
+
+**四选项 App 版（1515 题，选择题形态）**
+
+| 地址 | 说明 |
+|---|---|
+| `https://cdn.jsdelivr.net/gh/siyagang/shiti-bank@main/q_app.json` | 给只吃「题干 + 四个选项 + 正确项下标」的 App / 电视端用 |
+
+这个文件跟主库不是同一个结构，是给刷题类 App 的另一种写法：
+
+```json
+{"version":1, "count":1515, "questions":[
+  {"id":"zk_math_g7_01_q1", "grade":7, "subject":"math", "topic":"有理数的运算",
+   "stem":"计算：-8 + 3 × (-8) 的值是（　）。",
+   "options":["-32","-33","-31","32"], "answerIndex":0,
+   "solution":["先算乘法：3×(-8) = -24","再算加法：-8 + (-24) = -32"],
+   "explanation":"…", "term":1, "region":"北京", "edition":"pep"}
+]}
+```
+
+- 选择题原样保留选项顺序；数值题现场改写成四选项（干扰项由答案生成，固定随机种子，每次导出结果一致）；
+- **短答题（short）没法变成选择题，共 89 道未纳入**，所以语文只有 92 题（主库 181 题，缺的是名句默写那类填空）；
+- `term`：`1` = 上册，`2` = 下册，`0` = 全册或未标学期；
+- 想重新导出：`python scripts/make_app_json.py`（产物就是根目录的 `q_app.json`）。
 
 ### 二、练习页（网页界面）
 
