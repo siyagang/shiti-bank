@@ -1,0 +1,6 @@
+# 统一换行符：代码和 JSON 一律 LF，避免 Windows 上每次提交都显示整个文件被改动
+* text=auto eol=lf
+*.csv  text eol=crlf
+*.png  binary
+*.jpg  binary
+*.ico  binary
