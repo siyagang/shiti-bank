@@ -28,7 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from qbank import load_questions, load_topics, save_questions  # noqa: E402
 from add_question import append_questions  # noqa: E402
 
-COLUMNS = ("topicId", "region", "type", "difficulty", "prompt", "answer", "explanation",
+COLUMNS = ("topicId", "region", "semester", "type", "difficulty", "prompt", "answer", "explanation",
            "choices", "verify", "accept", "unordered")
 
 

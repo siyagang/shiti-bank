@@ -213,6 +213,50 @@ TOPIC_TABLE: dict[tuple[str, int], list[tuple[str, str]]] = {
     ],
 }
 
+# ---------------------------------------------------------------- 学期
+# 每个知识点属于哪一册（按人教版 / 部编版教材的实际编排）。
+# 用与 TOPIC_TABLE 等长的列表单独维护，这样增删知识点时不会打乱 topic id 的编号顺序。
+# 取值：上册 / 下册 / 全册（整册不分上下，或该年级没有单独开课、属于复习整合的内容）。
+SEMESTER_TABLE: dict[tuple[str, int], list[str]] = {
+    # 数学：七上 1-4 章，七下 5-10 章；八上 11-15 章，八下 16-20 章；九上 21-25 章，九下 26-28 章
+    ("math", 7): ["上册", "上册", "上册", "上册", "下册", "下册", "下册", "下册"],
+    ("math", 8): ["下册", "下册", "下册", "下册", "下册", "上册", "上册"],
+    ("math", 9): ["上册", "上册", "上册", "上册", "上册", "下册", "下册", "下册"],
+    # 物理：八上 1-6 章，八下 7-12 章；九年级多数地区按上册讲到欧姆定律、下册讲电功率与电与磁
+    ("physics", 8): ["上册", "上册", "上册", "上册", "上册", "上册",
+                     "下册", "下册", "下册", "下册", "下册"],
+    ("physics", 9): ["上册", "上册", "上册", "上册", "下册", "下册", "下册"],
+    # 化学：九上 1-7 单元，九下 8-11 单元
+    ("chemistry", 9): ["上册", "上册", "上册", "上册", "上册", "上册", "上册",
+                       "下册", "下册", "下册", "下册"],
+    # 语文：名句默写本就按上下册分开；文学常识、成语是整年级的积累，标全册
+    ("chinese", 7): ["上册", "下册", "全册", "全册"],
+    ("chinese", 8): ["上册", "下册", "全册", "全册"],
+    ("chinese", 9): ["上册", "下册", "全册", "全册"],
+    # 英语：教材 Unit 前一半在上册、后一半在下册
+    ("english", 7): ["上册", "上册", "下册", "下册"],
+    ("english", 8): ["上册", "上册", "下册", "下册"],
+    ("english", 9): ["上册", "上册", "上册", "下册", "下册"],
+    # 历史：七上中国古代史前半、七下隋唐至明清；八上近代史、八下现代史；九上世界古代近代、九下世界现代
+    ("history", 7): ["上册", "下册", "下册"],
+    ("history", 8): ["上册", "上册", "下册"],
+    ("history", 9): ["上册", "上册", "下册"],
+    # 地理：七上地球与地图、七下世界区域；八上中国总论、八下中国区域
+    ("geography", 7): ["上册", "上册", "下册"],
+    ("geography", 8): ["上册", "上册", "上册"],
+    ("geography", 9): ["下册", "下册"],
+    # 生物：七上细胞与绿色植物、七下人体；八上动物微生物、八下遗传进化
+    ("biology", 7): ["上册", "上册", "下册", "下册", "下册"],
+    ("biology", 8): ["上册", "上册", "下册", "下册", "上册"],
+    ("biology", 9): ["全册", "全册"],
+    # 道德与法治：七上成长与友谊、七下法律；八下宪法与法治；九上四单元
+    ("morality", 7): ["上册", "上册", "上册", "下册"],
+    ("morality", 8): ["下册", "下册", "下册"],
+    ("morality", 9): ["上册", "上册", "上册", "上册", "上册"],
+}
+
+SEMESTERS = ("上册", "下册", "全册")
+
 
 def topic_id(subject: str, grade: int, index: int) -> str:
     return f"zk_{subject}_g{grade}_{index + 1:02d}"
@@ -221,13 +265,18 @@ def topic_id(subject: str, grade: int, index: int) -> str:
 def build_topics() -> list[dict]:
     out = []
     for (subject, grade), rows in TOPIC_TABLE.items():
+        semesters = SEMESTER_TABLE.get((subject, grade), [])
+        if len(semesters) != len(rows):
+            raise SystemExit(
+                f"SEMESTER_TABLE[{subject!r}, {grade}] 有 {len(semesters)} 项，"
+                f"但 TOPIC_TABLE 有 {len(rows)} 个知识点，请补齐")
         for i, (name, chapter) in enumerate(rows):
             out.append({
                 "id": topic_id(subject, grade, i),
                 "name": name,
                 "subject": subject,
                 "grade": grade,
-                "semester": "",
+                "semester": semesters[i],
                 "chapter": chapter,
                 "type": "conceptual",
             })

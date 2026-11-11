@@ -153,12 +153,21 @@ def main() -> int:
             for q in questions if isinstance(q, dict)
         )
         covered = {q.get("topicId") for q in questions if isinstance(q, dict)}
+        topic_sem = {t["id"]: t.get("semester", "") for t in topics}
         empty_topics = [t["id"] for t in topics if t["id"] not in covered and not t.get("external")]
 
         print(f"题目总数：{len(questions)}")
         print("  按学科：" + "，".join(f"{k} {v}" for k, v in by_subject.most_common()))
         print("  按题型：" + "，".join(f"{k} {v}" for k, v in by_type.most_common()))
         print("  按难度：" + "，".join(f"{k} {v}" for k, v in by_diff.most_common()))
+        by_sem = collections.Counter(
+            q.get("semester")
+            or (topic_sem.get(q.get("topicId")) or "(未标学期)")
+            for q in questions if isinstance(q, dict)
+        )
+        sem_order = [k for k in ("上册", "下册", "全册") if by_sem.get(k)]
+        sem_rest = [k for k in by_sem if k not in ("上册", "下册", "全册")]
+        print("  按学期：" + "，".join(f"{k} {by_sem[k]}" for k in sem_order + sem_rest))
         print(f"知识点：共 {len(topic_ids)} 个，已有题 {len(covered & topic_ids)} 个，还没有题 {len(empty_topics)} 个")
         if empty_topics and len(empty_topics) <= 20:
             print("  待补题：" + "、".join(f"{tid}({topic_name.get(tid, '')})" for tid in empty_topics))

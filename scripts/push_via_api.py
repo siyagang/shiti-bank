@@ -42,8 +42,8 @@ def req(method: str, url: str, data=None):
 
 
 def changed_files() -> list[str]:
-    out = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
-                         capture_output=True, text=True, encoding="utf-8").stdout
+    out = subprocess.run(["git", "-c", "core.quotepath=false", "status", "--porcelain"],
+                         cwd=ROOT, capture_output=True, text=True, encoding="utf-8").stdout
     files = []
     for line in out.splitlines():
         if not line.strip():

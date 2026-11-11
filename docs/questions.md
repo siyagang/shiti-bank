@@ -18,6 +18,7 @@
 | `id` | 是 | 必须是 `<topicId>_q<N>`，如 `zk_math_g9_01_q3`。脚本按此规则自动生成，不要手写别的格式 |
 | `topicId` | 是 | 所属知识点 id，必须存在于 `topics.json`；学科和年级都由它决定 |
 | `region` | 否 | 省份名，如 `江苏`、`内蒙古`。练习页的地区下拉靠它筛题 |
+| `semester` | 否 | 学期：`上册` / `下册` / `全册`（整册不分上下，或该年级没有单独开课）。一般由所属知识点带出来，练习页的「学期」筛选优先读题目自身的值，没有才回退到知识点 |
 | `difficulty` | 是 | `basic`（直接套定义 / 一步计算）、`standard`（课本例题，2–3 步）、`advanced`（综合、多步、易错）、`challenge`（超纲或竞赛味） |
 | `type` | 是 | `numeric` 数值题、`choice` 选择题、`short` 短答题、`self` 开放题（自评） |
 | `prompt` | 是 | 题干。**必须自包含**：不写「如上图」「同上题」，几何条件用文字写全 |
@@ -143,7 +144,7 @@
   "name": "一元二次方程",
   "subject": "math",
   "grade": 9,
-  "semester": "",
+  "semester": "上册",
   "chapter": "第二十一章 一元二次方程",
   "type": "conceptual"
 }
@@ -156,7 +157,7 @@
 | `subject` | 是 | `math` / `chinese` / `english` / `physics` / `chemistry` / `biology` / `history` / `geography` / `morality` |
 | `grade` | 是 | `7` / `8` / `9`，练习页的年级筛选读它 |
 | `chapter` | 否 | 教材章节 |
-| `semester` | 否 | `上` / `下`，本库暂未填 |
+| `semester` | 否 | `上册` / `下册` / `全册`。按人教版、部编版教材的实际编排标定：如数学七上是一至四章、八下是十六至二十章；物理八上是一至六章；化学九上是一至七单元。`全册` 表示整册不分上下，或该年级没有单独开课（如语文的文学常识、成语是整年级积累，九年级地理属于复习整合） |
 | `type` | 否 | `conceptual` 概念 / `procedural` 方法 / `strategic` 综合 |
 
 题目不写年级和学科，全部由 `topicId` 决定，避免两处填写不一致。

@@ -131,6 +131,12 @@
     <div class="row"><span class="label">地区</span><select id="region"><option value="">全部</option></select></div>
     <div class="row"><span class="label">学科</span><div id="subjects" class="row" style="margin:0"></div></div>
     <div class="row"><span class="label">年级</span><select id="grade"><option value="">全部</option></select></div>
+    <div class="row"><span class="label">学期</span><div id="semesters" class="row" style="margin:0">
+      <button class="chip on" data-s="">全部</button>
+      <button class="chip" data-s="上册">上册</button>
+      <button class="chip" data-s="下册">下册</button>
+      <button class="chip" data-s="全册">全册</button>
+    </div></div>
     <div class="row"><span class="label">难度</span><div id="diffs" class="row" style="margin:0">
       <button class="chip on" data-d="">全部</button>
       <button class="chip" data-d="basic">基础</button>
@@ -194,6 +200,7 @@
   const SUBJECT_CN = {math:'数学', chinese:'语文', english:'英语', physics:'物理', chemistry:'化学',
                       biology:'生物', history:'历史', geography:'地理', science:'科学', morality:'道德与法治'};
   const DIFF_CN = {basic:'基础', standard:'常规', advanced:'进阶', challenge:'挑战'};
+  const GRADE_CN = {7:'七年级', 8:'八年级', 9:'九年级'};
   // 学科顺序按课时习惯排，而不是按英文键名排序
   const SUBJECT_ORDER = ['math','chinese','english','physics','chemistry','biology','history','geography','morality','science'];
   const orderOf = (a, b) => {
@@ -248,6 +255,8 @@
   const regionOf = q => q.region || '';
   const subjectOf = q => (topicMap[q.topicId] && topicMap[q.topicId].subject) || 'other';
   const gradeOf = q => (topicMap[q.topicId] && topicMap[q.topicId].grade) || 0;
+  // 题目自带 semester 优先；老数据或手导入的题没有时，回退到它所属知识点
+  const semesterOf = q => q.semester || (topicMap[q.topicId] && topicMap[q.topicId].semester) || '';
 
   function buildFilters() {
     const regions = [...new Set(QUESTIONS.map(regionOf))].filter(Boolean)
@@ -280,13 +289,47 @@
         c.classList.add('on'); updatePoolInfo();
       };
     });
+
+    // 学期：跟着地区/学科/年级联动，没题的学期直接置灰
+    const semBox = $('semesters');
+    semBox.querySelectorAll('.chip').forEach(c => {
+      c.onclick = () => {
+        if (c.disabled) return;
+        semBox.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+        c.classList.add('on');
+        updatePoolInfo();
+      };
+    });
+
     $('count').onchange = updatePoolInfo;
+  }
+
+  function syncSemesterChips() {
+    const f = curFilter();
+    const box = $('semesters');
+    const base = QUESTIONS.filter(q =>
+      (!f.region || regionOf(q) === f.region) &&
+      (!f.subject || subjectOf(q) === f.subject) &&
+      (!f.grade || String(gradeOf(q)) === f.grade));
+    box.querySelectorAll('.chip').forEach(c => {
+      const val = c.dataset.s || '';
+      const n = val ? base.filter(q => semesterOf(q) === val).length : base.length;
+      c.disabled = n === 0;
+      c.style.opacity = n === 0 ? '.35' : '';
+      c.style.cursor = n === 0 ? 'not-allowed' : 'pointer';
+    });
+    const on = box.querySelector('.chip.on');
+    if (on && on.disabled) {           // 当前选中的学期在这里没有题，退回「全部」
+      box.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+      box.querySelector('[data-s=""]').classList.add('on');
+    }
   }
 
   const curFilter = () => ({
     region: $('region').value,
     subject: (document.querySelector('#subjects .chip.on') || {}).dataset?.s || '',
     grade: $('grade').value,
+    semester: (document.querySelector('#semesters .chip.on') || {}).dataset?.s || '',
     difficulty: (document.querySelector('#diffs .chip.on') || {}).dataset?.d || ''
   });
 
@@ -296,10 +339,12 @@
       (!f.region || regionOf(q) === f.region) &&
       (!f.subject || subjectOf(q) === f.subject) &&
       (!f.grade || String(gradeOf(q)) === f.grade) &&
+      (!f.semester || semesterOf(q) === f.semester) &&
       (!f.difficulty || q.difficulty === f.difficulty));
   }
 
   function updatePoolInfo() {
+    syncSemesterChips();
     const n = filtered().length;
     $('poolInfo').textContent = n ? `当前筛选下有 ${n} 道题` : '这个筛选下还没有题，换个条件试试';
     $('startBtn').disabled = n === 0;
@@ -396,7 +441,7 @@
     $('qTags').innerHTML = [
       SUBJECT_CN[t.subject] || '',
       q.region ? `${q.region}·中考` : '',
-      t.grade ? `${t.grade}年级${t.semester || ''}` : '',
+      t.grade ? `${GRADE_CN[t.grade] || t.grade + '年级'}${semesterOf(q)}` : '',
       t.name || '',
       DIFF_CN[q.difficulty] || q.difficulty || ''
     ].filter(Boolean).map(x => `<span class="tag">${esc(x)}</span>`).join('');

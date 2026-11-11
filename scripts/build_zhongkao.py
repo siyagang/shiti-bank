@@ -643,6 +643,7 @@ def main() -> int:
             "answer": "",
             "explanation": meta["explanation"],
             "region": region,
+            "semester": tinfo.get("semester", ""),
             "source": "中考仿真题",
         }
         if meta["type"] == "choice":
