@@ -13,3 +13,6 @@ _*.js
 # 每日更新产生的日志与已导入归档
 logs/
 inbox/_done/
+
+# 平台工作区数据，不入库
+.workbuddy/

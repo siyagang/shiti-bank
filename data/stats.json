@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T23:15:31",
+  "updatedAt": "2026-11-11T23:20:37",
   "total": 2611,
   "topics": 118,
   "topicsWithQuestions": 101,
@@ -22,18 +22,12 @@
   },
   "bySemester": {
     "上册": 1198,
-    "下册": 1094,
-    "全册": 319
+    "下册": 1413
   },
   "byType": {
     "numeric": 1076,
     "choice": 1288,
     "short": 247
-  },
-  "byDifficulty": {
-    "basic": 397,
-    "standard": 1950,
-    "advanced": 264
   },
   "topicsWithoutQuestions": [
     "zk_math_g7_04(几何图形初步)",

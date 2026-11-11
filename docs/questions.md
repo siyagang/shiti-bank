@@ -18,8 +18,7 @@
 | `id` | 是 | 必须是 `<topicId>_q<N>`，如 `zk_math_g9_01_q3`。脚本按此规则自动生成，不要手写别的格式 |
 | `topicId` | 是 | 所属知识点 id，必须存在于 `topics.json`；学科和年级都由它决定 |
 | `region` | 否 | 省份名，如 `江苏`、`内蒙古`。练习页的地区下拉靠它筛题 |
-| `semester` | 否 | 学期：`上册` / `下册` / `全册`（整册不分上下，或该年级没有单独开课）。一般由所属知识点带出来，练习页的「学期」筛选优先读题目自身的值，没有才回退到知识点 |
-| `difficulty` | 是 | `basic`（直接套定义 / 一步计算）、`standard`（课本例题，2–3 步）、`advanced`（综合、多步、易错）、`challenge`（超纲或竞赛味） |
+| `semester` | 否 | 学期：`上册` / `下册`。一般由所属知识点带出来，练习页的「学期」筛选优先读题目自身的值，没有才回退到知识点 |
 | `type` | 是 | `numeric` 数值题、`choice` 选择题、`short` 短答题、`self` 开放题（自评） |
 | `prompt` | 是 | 题干。**必须自包含**：不写「如上图」「同上题」，几何条件用文字写全 |
 | `answer` | 是 | 一律字符串。numeric 填一个数（整数 / 小数 / 分数 `a/b` / 负数），多解用全角「，」分隔；choice 填选项字母；short 填标准短答；self 填参考答案 |
@@ -46,7 +45,6 @@
   "topicId": "zk_math_g8_02",
   "region": "江苏",
   "source": "中考仿真题",
-  "difficulty": "basic",
   "type": "numeric",
   "prompt": "直角三角形的两条直角边分别是 3 和 4，斜边长是（　）。",
   "answer": "5",
@@ -63,7 +61,6 @@
   "topicId": "zk_morality_g8_01",
   "region": "浙江",
   "source": "中考仿真题",
-  "difficulty": "standard",
   "type": "choice",
   "prompt": "我国的最高国家权力机关是（　）。",
   "choices": [
@@ -86,7 +83,6 @@
   "topicId": "zk_chinese_g8_01",
   "region": "广东",
   "source": "中考仿真题",
-  "difficulty": "standard",
   "type": "short",
   "prompt": "补写古诗文名句：「大漠孤烟直，______。」（《使至塞上》王维）",
   "answer": "长河落日圆",
@@ -101,7 +97,6 @@
 {
   "id": "zk_math_g7_01_q9",
   "topicId": "zk_math_g7_01",
-  "difficulty": "standard",
   "type": "self",
   "prompt": "用「春」组一个词语，再用这个词语写一句完整的话。",
   "answer": "参考答案：春天。春天来了，小草绿了。",
@@ -157,7 +152,7 @@
 | `subject` | 是 | `math` / `chinese` / `english` / `physics` / `chemistry` / `biology` / `history` / `geography` / `morality` |
 | `grade` | 是 | `7` / `8` / `9`，练习页的年级筛选读它 |
 | `chapter` | 否 | 教材章节 |
-| `semester` | 否 | `上册` / `下册` / `全册`。按人教版、部编版教材的实际编排标定：如数学七上是一至四章、八下是十六至二十章；物理八上是一至六章；化学九上是一至七单元。`全册` 表示整册不分上下，或该年级没有单独开课（如语文的文学常识、成语是整年级积累，九年级地理属于复习整合） |
+| `semester` | 否 | `上册` / `下册`。按人教版、部编版教材的实际编排标定：如数学七上是一至四章、八下是十六至二十章；物理八上是一至六章；化学九上是一至七单元。整册通用或复习整合类内容（如语文的文学常识、成语，九年级地理）统一归入下册 |
 | `type` | 否 | `conceptual` 概念 / `procedural` 方法 / `strategic` 综合 |
 
 题目不写年级和学科，全部由 `topicId` 决定，避免两处填写不一致。
@@ -180,7 +175,7 @@
 
 ## 五、校验规则
 
-`python scripts/validate.py` 会检查：id 唯一且与 topicId 对应、topicId 存在且不是 external、difficulty / type 合法、必填字段非空、没有拼错的未知字段、选择题选项 3–4 个且 key 依次 A–D、answer 是某个 key、选项文字不重复、numeric 的 answer 能解析成数、figure 是内联 SVG 且没引用外网、`hideChoiceText` 只用在每个选项都有图时。
+`python scripts/validate.py` 会检查：id 唯一且与 topicId 对应、topicId 存在且不是 external、type 合法、必填字段非空、没有拼错的未知字段、选择题选项 3–4 个且 key 依次 A–D、answer 是某个 key、选项文字不重复、numeric 的 answer 能解析成数、figure 是内联 SVG 且没引用外网、`hideChoiceText` 只用在每个选项都有图时。
 
 `python scripts/verify_questions.py` 会检查：每条 `verify` 能否安全求值、求值结果与 answer 是否一致、选择题有没有双解。
 

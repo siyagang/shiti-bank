@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from qbank import (  # noqa: E402
-    DIFFICULTIES, TYPES, load_questions, load_topics, next_id, save_questions,
+    TYPES, load_questions, load_topics, next_id, save_questions,
 )
 from validate import check_question  # noqa: E402
 from verify_questions import verify_one  # noqa: E402
@@ -47,7 +47,6 @@ def build_from_json(item: dict, questions: list[dict]) -> dict:
     topic_id = str(q.get("topicId", "")).strip()
     if not topic_id:
         raise ValueError("缺少 topicId")
-    q.setdefault("difficulty", "basic")
     q.setdefault("type", "numeric")
     if isinstance(q.get("choices"), str):
         q["choices"] = parse_choices(q["choices"])
@@ -55,7 +54,7 @@ def build_from_json(item: dict, questions: list[dict]) -> dict:
         q["accept"] = [x.strip() for x in q["accept"].split("|") if x.strip()]
     if "unordered" in q and isinstance(q["unordered"], str):
         q["unordered"] = q["unordered"].lower() in ("1", "true", "yes", "是")
-    for k in ("id", "topicId", "difficulty", "type", "prompt", "answer", "explanation"):
+    for k in ("id", "topicId", "type", "prompt", "answer", "explanation"):
         if k in q and isinstance(q[k], (int, float)):
             q[k] = str(q[k])
     # 强制重新分配 id，避免手写冲突
@@ -140,9 +139,8 @@ def interactive() -> list[dict]:
             print("  这一项必填。")
 
     qtype = ask(f"题型 {'/'.join(TYPES)}", "numeric", required=True)
-    difficulty = ask(f"难度 {'/'.join(DIFFICULTIES)}", "basic", required=True)
     prompt = ask("题干", required=True)
-    q: dict = {"topicId": topic["id"], "type": qtype, "difficulty": difficulty, "prompt": prompt}
+    q: dict = {"topicId": topic["id"], "type": qtype, "prompt": prompt}
 
     if qtype == "choice":
         raw = ask("选项（用 | 分隔，可写 A:xxx|B:xxx）", required=True)

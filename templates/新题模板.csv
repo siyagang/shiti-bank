@@ -1,4 +1,4 @@
-﻿topicId,region,semester,type,difficulty,prompt,answer,explanation,choices,verify,accept,unordered
-zk_math_g9_01,江苏,上册,numeric,standard,方程 x² - 5x + 6 = 0 的解是（　）。,2，3,因式分解得 (x-2)(x-3)=0。,,"roots2(1,-5,6)",,true
-zk_physics_g9_04,浙江,上册,choice,standard,一个用电器两端电压为 6 V，电流为 2 A，它的电功率是（　）。,B,P = UI = 2 A × 6 V = 12 W。,6 W|12 W|3 W|8 W,'12 W',,
-zk_chinese_g8_01,广东,上册,short,standard,补写名句：「大漠孤烟直，______。」,长河落日圆,出自王维《使至塞上》。,,长河落日圆,长河落日圆。|长河落日圆,
+﻿topicId,region,semester,type,prompt,answer,explanation,choices,verify,accept,unordered
+zk_math_g9_01,江苏,上册,numeric,方程 x² - 5x + 6 = 0 的解是（　）。,2，3,因式分解得 (x-2)(x-3)=0。,,"roots2(1,-5,6)",,true
+zk_physics_g9_04,浙江,上册,choice,一个用电器两端电压为 6 V，电流为 2 A，它的电功率是（　）。,B,P = UI = 2 A × 6 V = 12 W。,6 W|12 W|3 W|8 W,'12 W',,
+zk_chinese_g8_01,广东,上册,short,补写名句：「大漠孤烟直，______。」,长河落日圆,出自王维《使至塞上》。,,长河落日圆,长河落日圆。|长河落日圆,

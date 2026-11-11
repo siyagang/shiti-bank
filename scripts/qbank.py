@@ -15,14 +15,13 @@ QUESTIONS_PATH = DATA_DIR / "questions.json"
 TOPICS_PATH = DATA_DIR / "topics.json"
 REPORT_PATH = DATA_DIR / "verification_report.json"
 
-DIFFICULTIES = ("basic", "standard", "advanced", "challenge")
 TYPES = ("numeric", "choice", "short", "self")
 
-REQUIRED_FIELDS = ("id", "topicId", "difficulty", "type", "prompt", "answer", "explanation")
+REQUIRED_FIELDS = ("id", "topicId", "type", "prompt", "answer", "explanation")
 
 # 允许出现的字段，防止手滑写出 xxxxx / expanation 这类拼错的键
 ALLOWED_FIELDS = {
-    "id", "topicId", "difficulty", "type", "prompt", "answer", "explanation",
+    "id", "topicId", "type", "prompt", "answer", "explanation",
     "choices", "figure", "hideChoiceText", "accept", "verify", "unordered",
     "tags", "source", "note", "region", "semester",
 }

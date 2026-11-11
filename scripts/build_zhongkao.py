@@ -640,7 +640,6 @@ def main() -> int:
         item = {
             "id": f"{tid}_q{counters[tid]}",
             "topicId": tid,
-            "difficulty": meta["difficulty"],
             "type": meta["type"],
             "prompt": meta["prompt"],
             "answer": "",

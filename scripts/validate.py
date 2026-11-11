@@ -15,7 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from qbank import (  # noqa: E402
-    ALLOWED_FIELDS, DIFFICULTIES, ID_RE, REQUIRED_FIELDS, TYPES,
+    ALLOWED_FIELDS, ID_RE, REQUIRED_FIELDS, TYPES,
     load_questions, load_topics, parse_number, split_answers,
 )
 
@@ -49,8 +49,6 @@ def check_question(q: dict, idx: int, topic_ids: set[str], external: set[str]) -
         errs.append(f"{where} topicId「{q['topicId']}」是 external 节点，不该有题")
 
     # 枚举值
-    if q["difficulty"] not in DIFFICULTIES:
-        errs.append(f"{where} difficulty 非法：{q['difficulty']}（可选 {'/'.join(DIFFICULTIES)}）")
     if q["type"] not in TYPES:
         errs.append(f"{where} type 非法：{q['type']}（可选 {'/'.join(TYPES)}）")
 
@@ -147,7 +145,6 @@ def main() -> int:
 
     if not args.quiet:
         by_type = collections.Counter(q.get("type") for q in questions if isinstance(q, dict))
-        by_diff = collections.Counter(q.get("difficulty") for q in questions if isinstance(q, dict))
         by_subject = collections.Counter(
             next((t.get("subject", "?") for t in topics if t["id"] == q.get("topicId")), "?")
             for q in questions if isinstance(q, dict)
@@ -159,14 +156,13 @@ def main() -> int:
         print(f"题目总数：{len(questions)}")
         print("  按学科：" + "，".join(f"{k} {v}" for k, v in by_subject.most_common()))
         print("  按题型：" + "，".join(f"{k} {v}" for k, v in by_type.most_common()))
-        print("  按难度：" + "，".join(f"{k} {v}" for k, v in by_diff.most_common()))
         by_sem = collections.Counter(
             q.get("semester")
             or (topic_sem.get(q.get("topicId")) or "(未标学期)")
             for q in questions if isinstance(q, dict)
         )
-        sem_order = [k for k in ("上册", "下册", "全册") if by_sem.get(k)]
-        sem_rest = [k for k in by_sem if k not in ("上册", "下册", "全册")]
+        sem_order = [k for k in ("上册", "下册") if by_sem.get(k)]
+        sem_rest = [k for k in by_sem if k not in ("上册", "下册")]
         print("  按学期：" + "，".join(f"{k} {by_sem[k]}" for k in sem_order + sem_rest))
         print(f"知识点：共 {len(topic_ids)} 个，已有题 {len(covered & topic_ids)} 个，还没有题 {len(empty_topics)} 个")
         if empty_topics and len(empty_topics) <= 20:

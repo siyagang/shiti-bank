@@ -7,7 +7,7 @@
   - 短答题（short / self）无法做成选择题，直接跳过——所以语文会少掉一批名句默写；
   - 字段压平成 App 常见写法：stem / options / answerIndex / solution / term / region / edition。
 
-term 约定：1 = 上册，2 = 下册，0 = 全册或未标学期。
+term 约定：1 = 上册，2 = 下册，0 = 未标学期。
 随机性用了固定种子，同样的主库数据每次导出结果一致。
 """
 from __future__ import annotations
@@ -34,7 +34,7 @@ def term_of(topic: dict) -> int:
         return 1
     if s == "下册":
         return 2
-    return 0          # 全册，或没标学期
+    return 0          # 没标学期
 
 
 NUM_RE = re.compile(r"-?\d+(?:\.\d+)?(?:/\d+)?")
@@ -145,7 +145,7 @@ def main() -> int:
         "source": "siyagang/shiti-bank 全国中考题库（四选项 App 版）",
         "license": "自建",
         "note": "由 data/questions.json 导出：选择题原样保留；数值题改写为四选项；短答题（short/self）无法转选择题，未纳入。"
-                "term：1=上册，2=下册，0=全册或未标学期。",
+                "term：1=上册，2=下册，0=未标学期。",
         "count": len(converted),
         "questions": converted,
     }

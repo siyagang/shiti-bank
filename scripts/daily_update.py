@@ -123,7 +123,6 @@ def write_stats(dry: bool) -> dict:
             tmap[q["topicId"]]["grade"] for q in questions if q["topicId"] in tmap).items())),
         "bySemester": dict(collections.Counter(q.get("semester", "") for q in questions)),
         "byType": dict(collections.Counter(q.get("type", "") for q in questions)),
-        "byDifficulty": dict(collections.Counter(q.get("difficulty", "") for q in questions)),
         "topicsWithoutQuestions": missing,
     }
     if not dry:
