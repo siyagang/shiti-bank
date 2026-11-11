@@ -54,6 +54,15 @@ def changed_files() -> list[str]:
             continue
         if " -> " in path:  # 重命名
             path = path.split(" -> ", 1)[1]
+        abs_path = os.path.join(ROOT, path)
+        if os.path.isdir(abs_path):
+            # git 对未跟踪目录只报一行 `?? dir/`，这里展开成具体文件
+            for base, dirs, names in os.walk(abs_path):
+                dirs[:] = [d for d in dirs if d not in ("_done", "__pycache__", ".git")]
+                for name in names:
+                    rel = os.path.relpath(os.path.join(base, name), ROOT).replace("\\", "/")
+                    files.append(rel)
+            continue
         files.append(path)
     return files
 

@@ -197,3 +197,12 @@ IDIOMS: list[tuple[int, str, str]] = [
     (9, "石破天惊", "形容文章议论新奇惊人"),
     (9, "不容置疑", "不容许有什么怀疑，指真实可信"),
 ]
+
+
+# ------------------------------------------------------------------ 扩充素材
+# 新增篇目单独放在 zk_cn_ext.py，这里只做合并，原始表保持原样便于核对。
+from zk_cn_ext import IDIOMS_EXT, LITERATURE_EXT, POEMS_EXT, POEM_TERM  # noqa: E402
+
+POEMS = POEMS + POEMS_EXT
+LITERATURE = LITERATURE + LITERATURE_EXT
+IDIOMS = IDIOMS + IDIOMS_EXT

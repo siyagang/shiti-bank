@@ -360,3 +360,12 @@ GEOGRAPHY: list[tuple[int, int, str, str, list[str], str]] = [
     (9, 1, "我国面积最大的省级行政区域单位是", "新疆维吾尔自治区", ["西藏自治区", "内蒙古自治区", "青海省"],
      "新疆维吾尔自治区面积约 166 万平方千米，是我国面积最大的省级行政区域单位。"),
 ]
+
+
+# ------------------------------------------------------------------ 扩充素材
+# 新增题目放在 zk_humanities_ext.py，这里只做合并，原始表保持原样便于核对。
+from zk_humanities_ext import ENGLISH_EXT, GEOGRAPHY_EXT, HISTORY_EXT  # noqa: E402
+
+ENGLISH = ENGLISH + ENGLISH_EXT
+HISTORY = HISTORY + HISTORY_EXT
+GEOGRAPHY = GEOGRAPHY + GEOGRAPHY_EXT

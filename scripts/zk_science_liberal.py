@@ -202,3 +202,11 @@ MORALITY: list[tuple[int, int, str, str, list[str], str]] = [
     (9, 4, "我国倡导构建人类命运共同体，其核心内涵是", "建设持久和平、普遍安全、共同繁荣、开放包容、清洁美丽的世界", ["建立单极世界", "搞贸易保护", "闭关锁国"],
      "构建人类命运共同体，就是要建设持久和平、普遍安全、共同繁荣、开放包容、清洁美丽的世界。"),
 ]
+
+
+# ------------------------------------------------------------------ 扩充素材
+# 新增题目放在 zk_science_liberal_ext.py，这里只做合并，原始表保持原样便于核对。
+from zk_science_liberal_ext import BIOLOGY_EXT, MORALITY_EXT  # noqa: E402
+
+BIOLOGY = BIOLOGY + BIOLOGY_EXT
+MORALITY = MORALITY + MORALITY_EXT

@@ -1,0 +1,57 @@
+{
+  "updatedAt": "2026-11-11T23:12:42",
+  "total": 2611,
+  "topics": 118,
+  "topicsWithQuestions": 101,
+  "regions": 31,
+  "bySubject": {
+    "math": 617,
+    "physics": 344,
+    "chemistry": 115,
+    "chinese": 540,
+    "english": 230,
+    "history": 220,
+    "geography": 209,
+    "biology": 175,
+    "morality": 161
+  },
+  "byGrade": {
+    "7": 714,
+    "8": 967,
+    "9": 930
+  },
+  "bySemester": {
+    "上册": 1198,
+    "下册": 1094,
+    "全册": 319
+  },
+  "byType": {
+    "numeric": 1076,
+    "choice": 1288,
+    "short": 247
+  },
+  "byDifficulty": {
+    "basic": 397,
+    "standard": 1950,
+    "advanced": 264
+  },
+  "topicsWithoutQuestions": [
+    "zk_math_g7_04(几何图形初步)",
+    "zk_math_g9_03(旋转与中心对称)",
+    "zk_physics_g8_02(声现象)",
+    "zk_physics_g8_03(物态变化)",
+    "zk_physics_g8_05(透镜及其应用)",
+    "zk_physics_g8_07(力与运动)",
+    "zk_physics_g8_10(功和机械能)",
+    "zk_physics_g9_02(电流和电路)",
+    "zk_physics_g9_07(信息的传递与能源)",
+    "zk_chemistry_g9_01(物质的变化与性质)",
+    "zk_chemistry_g9_02(空气与氧气)",
+    "zk_chemistry_g9_03(物质构成的奥秘)",
+    "zk_chemistry_g9_06(碳和碳的氧化物)",
+    "zk_chemistry_g9_07(燃料及其利用)",
+    "zk_chemistry_g9_08(金属和金属材料)",
+    "zk_chemistry_g9_10(酸和碱)",
+    "zk_chemistry_g9_11(盐 化肥)"
+  ]
+}

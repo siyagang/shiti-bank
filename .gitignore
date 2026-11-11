@@ -9,3 +9,7 @@ data/_source/
 _*.html
 _*.js
 *.png
+
+# 每日更新产生的日志与已导入归档
+logs/
+inbox/_done/

@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from qbank import TOPICS_PATH, QUESTIONS_PATH  # noqa: E402
-from zk_cn import IDIOMS, LITERATURE, POEMS  # noqa: E402
+from zk_cn import IDIOMS, LITERATURE, POEMS, POEM_TERM  # noqa: E402
 from zk_data import PROVINCES, PROVINCE_NAMES, build_topics, topic_id  # noqa: E402
 from zk_humanities import ENGLISH, GEOGRAPHY, HISTORY  # noqa: E402
 from zk_science_liberal import BIOLOGY, MORALITY  # noqa: E402
@@ -469,8 +469,11 @@ def cn_items(rng: random.Random):
     out = []
     for idx, (grade, up, down, src) in enumerate(POEMS):
         accepts = [down, down.replace("，", ","), down.replace("，", ""), down.replace("，", "；")]
+        # 名句知识点按上册（topic 0）/下册（topic 1）分开，册次从出处查表，查不到才退回交替分配
+        term = POEM_TERM.get(src)
+        topic = (0 if term == "上" else 1) if term else idx % 2
         out.append(dict(
-            grade=grade, topic=idx % 2, difficulty="standard", type="short",
+            grade=grade, topic=topic, difficulty="standard", type="short",
             prompt=f"补写古诗文名句：「{up}，______。」（{src}）",
             answer=down, accept=[a for a in accepts if a != down],
             verify=repr(down),
