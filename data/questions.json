@@ -1,0 +1,367 @@
+[
+  {
+    "id": "cnm_p001_q1",
+    "topicId": "cnm_p001",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "2 和 3 合起来是几？",
+    "answer": "5",
+    "explanation": "2 再添上 3，就是 2 + 3 = 5。",
+    "verify": "2+3"
+  },
+  {
+    "id": "cnm_p001_q2",
+    "topicId": "cnm_p001",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "下面三个数中，哪个数最大？",
+    "choices": [
+      {"key": "A", "text": "1"},
+      {"key": "B", "text": "4"},
+      {"key": "C", "text": "2"}
+    ],
+    "answer": "B",
+    "explanation": "按顺序数 1、2、4，4 排在最后，所以 4 最大。",
+    "verify": "'4'"
+  },
+  {
+    "id": "cnm_p002_q1",
+    "topicId": "cnm_p002",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "8 + 7 = ?",
+    "answer": "15",
+    "explanation": "把 7 拆成 2 和 5，8 + 2 = 10，10 + 5 = 15。",
+    "verify": "8+7"
+  },
+  {
+    "id": "cnm_p002_q2",
+    "topicId": "cnm_p002",
+    "difficulty": "standard",
+    "type": "choice",
+    "prompt": "9 + 6 等于多少？",
+    "choices": [
+      {"key": "A", "text": "13"},
+      {"key": "B", "text": "14"},
+      {"key": "C", "text": "15"},
+      {"key": "D", "text": "16"}
+    ],
+    "answer": "C",
+    "explanation": "9 差 1 凑成 10，6 分成 1 和 5，9 + 1 = 10，10 + 5 = 15。",
+    "verify": "'15'"
+  },
+  {
+    "id": "cnm_p003_q1",
+    "topicId": "cnm_p003",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "6 × 7 = ?",
+    "answer": "42",
+    "explanation": "口诀「六七四十二」，所以积是 42。",
+    "verify": "6*7"
+  },
+  {
+    "id": "cnm_p003_q2",
+    "topicId": "cnm_p003",
+    "difficulty": "standard",
+    "type": "short",
+    "prompt": "一个因数是 9，另一个因数是 4，积是多少？（只写数或汉字均可）",
+    "answer": "36",
+    "accept": ["三十六"],
+    "explanation": "9 × 4 = 36，口诀「四九三十六」。"
+  },
+  {
+    "id": "cnm_p004_q1",
+    "topicId": "cnm_p004",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "把一张纸平均分成 4 份，其中的 1 份是这张纸的几分之几？",
+    "choices": [
+      {"key": "A", "text": "1/2"},
+      {"key": "B", "text": "1/4"},
+      {"key": "C", "text": "1/3"},
+      {"key": "D", "text": "1/8"}
+    ],
+    "answer": "B",
+    "explanation": "平均分成 4 份，取其中 1 份，就是这张纸的四分之一，即 1/4。",
+    "verify": "Fraction(1,4)"
+  },
+  {
+    "id": "cnm_p004_q2",
+    "topicId": "cnm_p004",
+    "difficulty": "standard",
+    "type": "numeric",
+    "prompt": "把 12 个苹果平均分成 3 份，每份是苹果总数的几分之几？（用分数表示，如 1/2）",
+    "answer": "1/3",
+    "explanation": "平均分成 3 份，每份是总数的 1/3，与具体个数无关。",
+    "verify": "Fraction(1,3)"
+  },
+  {
+    "id": "cnm_p005_q1",
+    "topicId": "cnm_p005",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "一个长方形长 6 厘米、宽 4 厘米，它的周长是多少厘米？（只写数）",
+    "answer": "20",
+    "explanation": "长方形周长 = （长 + 宽）× 2 = （6 + 4）× 2 = 20 厘米。",
+    "verify": "(6+4)*2"
+  },
+  {
+    "id": "cnm_p005_q2",
+    "topicId": "cnm_p005",
+    "difficulty": "standard",
+    "type": "numeric",
+    "prompt": "一个正方形的周长是 36 分米，它的边长是多少分米？（只写数）",
+    "answer": "9",
+    "explanation": "正方形四条边一样长，边长 = 周长 ÷ 4 = 36 ÷ 4 = 9 分米。",
+    "verify": "36/4"
+  },
+  {
+    "id": "cnm_p006_q1",
+    "topicId": "cnm_p006",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "下面哪一个是长方形？",
+    "hideChoiceText": true,
+    "choices": [
+      {"key": "A", "text": "三角形", "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 170\"><polygon points=\"110,24 30,146 190,146\" fill=\"currentColor\" fill-opacity=\"0.12\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\"/></svg>"},
+      {"key": "B", "text": "圆", "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 170\"><circle cx=\"110\" cy=\"86\" r=\"62\" fill=\"currentColor\" fill-opacity=\"0.12\" stroke=\"currentColor\" stroke-width=\"3\"/></svg>"},
+      {"key": "C", "text": "长方形", "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 170\"><rect x=\"26\" y=\"46\" width=\"168\" height=\"80\" fill=\"currentColor\" fill-opacity=\"0.12\" stroke=\"currentColor\" stroke-width=\"3\"/></svg>"},
+      {"key": "D", "text": "平行四边形", "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 170\"><polygon points=\"56,46 210,46 164,126 10,126\" fill=\"currentColor\" fill-opacity=\"0.12\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\"/></svg>"}
+    ],
+    "answer": "C",
+    "explanation": "长方形四个角都是直角，图中第三个图形四个角都是直角，是长方形。"
+  },
+  {
+    "id": "cnm_p006_q2",
+    "topicId": "cnm_p006",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "长方形有几条边？",
+    "choices": [
+      {"key": "A", "text": "3"},
+      {"key": "B", "text": "4"},
+      {"key": "C", "text": "5"},
+      {"key": "D", "text": "6"}
+    ],
+    "answer": "B",
+    "explanation": "长方形有 4 条边，对边相等。",
+    "verify": "'4'"
+  },
+  {
+    "id": "cnm_j001_q1",
+    "topicId": "cnm_j001",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "解方程 3x + 5 = 20，x 等于多少？",
+    "answer": "5",
+    "explanation": "移项得 3x = 20 - 5 = 15，两边同除以 3 得 x = 5。",
+    "verify": "(20-5)/3"
+  },
+  {
+    "id": "cnm_j001_q2",
+    "topicId": "cnm_j001",
+    "difficulty": "standard",
+    "type": "choice",
+    "prompt": "方程 2x - 4 = 0 的解是 x =（　）",
+    "choices": [
+      {"key": "A", "text": "0.5"},
+      {"key": "B", "text": "1"},
+      {"key": "C", "text": "2"},
+      {"key": "D", "text": "4"}
+    ],
+    "answer": "C",
+    "explanation": "移项得 2x = 4，两边同除以 2 得 x = 2。",
+    "verify": "2"
+  },
+  {
+    "id": "cnm_j002_q1",
+    "topicId": "cnm_j002",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "直角三角形的两条直角边分别是 3 和 4，斜边长是多少？",
+    "answer": "5",
+    "explanation": "由勾股定理，斜边² = 3² + 4² = 25，所以斜边 = 5。",
+    "verify": "sqrt(3**2+4**2)"
+  },
+  {
+    "id": "cnm_j002_q2",
+    "topicId": "cnm_j002",
+    "difficulty": "standard",
+    "type": "numeric",
+    "prompt": "直角三角形斜边长 13，一条直角边长 5，另一条直角边长是多少？",
+    "answer": "12",
+    "explanation": "由勾股定理，另一直角边² = 13² - 5² = 144，所以边长 = 12。",
+    "verify": "sqrt(13**2-5**2)"
+  },
+  {
+    "id": "cnm_j003_q1",
+    "topicId": "cnm_j003",
+    "difficulty": "basic",
+    "type": "numeric",
+    "prompt": "方程 x² - 5x + 6 = 0 的两个实数根是多少？（两个答案用「，」分隔）",
+    "answer": "2，3",
+    "unordered": true,
+    "explanation": "因式分解得 (x - 2)(x - 3) = 0，所以 x = 2 或 x = 3。",
+    "verify": "roots2(1,-5,6)"
+  },
+  {
+    "id": "cnm_j003_q2",
+    "topicId": "cnm_j003",
+    "difficulty": "standard",
+    "type": "numeric",
+    "prompt": "方程 x² - 4x + 4 = 0 的实数根有几个？",
+    "answer": "1",
+    "explanation": "判别式 Δ = (-4)² - 4×1×4 = 0，方程有两个相等的实数根，实数根只有 1 个（可记为 x = 2）。",
+    "verify": "len(roots2(1,-4,4))"
+  },
+  {
+    "id": "cnm_h001_q1",
+    "topicId": "cnm_h001",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "已知集合 A = {1, 2, 3}，B = {2, 3, 4}，则 A ∩ B 等于：",
+    "choices": [
+      {"key": "A", "text": "{1, 2, 3, 4}"},
+      {"key": "B", "text": "{2, 3}"},
+      {"key": "C", "text": "{1}"},
+      {"key": "D", "text": "空集"}
+    ],
+    "answer": "B",
+    "explanation": "交集取两个集合的公共元素，A 和 B 都有 2 和 3，所以 A ∩ B = {2, 3}。"
+  },
+  {
+    "id": "cnm_h001_q2",
+    "topicId": "cnm_h001",
+    "difficulty": "standard",
+    "type": "numeric",
+    "prompt": "集合 {1, 2, 3, 4, 5} 的子集个数是多少？",
+    "answer": "32",
+    "explanation": "含 n 个元素的集合有 2ⁿ 个子集，这里 n = 5，所以有 2⁵ = 32 个。",
+    "verify": "2**5"
+  },
+  {
+    "id": "cnm_h002_q1",
+    "topicId": "cnm_h002",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "函数 f(x) = x² 在下列哪个区间上单调递增？",
+    "choices": [
+      {"key": "A", "text": "(-∞, 0)"},
+      {"key": "B", "text": "(0, +∞)"},
+      {"key": "C", "text": "(-∞, +∞)"},
+      {"key": "D", "text": "[-1, 1]"}
+    ],
+    "answer": "B",
+    "explanation": "f(x) = x² 的图象是开口向上的抛物线，对称轴为 y 轴，在 (0, +∞) 上 y 随 x 增大而增大。"
+  },
+  {
+    "id": "cnm_h002_q2",
+    "topicId": "cnm_h002",
+    "difficulty": "standard",
+    "type": "short",
+    "prompt": "函数 f(x) = 2x + 1 在 R 上是增函数还是减函数？",
+    "answer": "增函数",
+    "accept": ["单调递增", "递增", "增"],
+    "explanation": "一次函数 f(x) = 2x + 1 的斜率 2 > 0，所以它在 R 上单调递增，是增函数。"
+  },
+  {
+    "id": "cnc_p001_q1",
+    "topicId": "cnc_p001",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "「天」字一共有几画？",
+    "choices": [
+      {"key": "A", "text": "3 画"},
+      {"key": "B", "text": "4 画"},
+      {"key": "C", "text": "5 画"},
+      {"key": "D", "text": "6 画"}
+    ],
+    "answer": "B",
+    "explanation": "「天」的笔顺是横、横、撇、捺，共 4 画。"
+  },
+  {
+    "id": "cnc_p001_q2",
+    "topicId": "cnc_p001",
+    "difficulty": "basic",
+    "type": "short",
+    "prompt": "「地」字的偏旁是什么？（写一个字）",
+    "answer": "土",
+    "accept": ["土字旁", "提土旁", "土字旁儿"],
+    "explanation": "「地」是左右结构，左边是「土」，所以偏旁是土字旁。"
+  },
+  {
+    "id": "cnc_p002_q1",
+    "topicId": "cnc_p002",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "下面哪个音节的声母是 b？",
+    "choices": [
+      {"key": "A", "text": "bā"},
+      {"key": "B", "text": "pā"},
+      {"key": "C", "text": "mā"},
+      {"key": "D", "text": "fā"}
+    ],
+    "answer": "A",
+    "explanation": "「bā」的声母是 b；「pā」是 p，「mā」是 m，「fā」是 f。注意 b 与 p 送气与否的区别。"
+  },
+  {
+    "id": "cnc_p002_q2",
+    "topicId": "cnc_p002",
+    "difficulty": "standard",
+    "type": "self",
+    "prompt": "用「春」组一个词语，再用这个词语写一句完整的话。",
+    "answer": "参考答案：春天。春天来了，小草绿了。",
+    "explanation": "答案不唯一：先组词（如「春天」「春风」「春雨」），再写一句主谓完整、句末有标点的话即可。自评时看是否成词、句子是否完整。"
+  },
+  {
+    "id": "cne_p001_q1",
+    "topicId": "cne_p001",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "Which letter comes after F?",
+    "choices": [
+      {"key": "A", "text": "G"},
+      {"key": "B", "text": "E"},
+      {"key": "C", "text": "H"},
+      {"key": "D", "text": "D"}
+    ],
+    "answer": "A",
+    "explanation": "字母表顺序是 … E, F, G, H …，F 后面是 G。"
+  },
+  {
+    "id": "cne_p001_q2",
+    "topicId": "cne_p001",
+    "difficulty": "basic",
+    "type": "short",
+    "prompt": "Fill in the missing letter: A, B, C, ___",
+    "answer": "D",
+    "accept": ["d"],
+    "explanation": "字母表开头是 A, B, C, D，所以空格处填 D。"
+  },
+  {
+    "id": "cne_p002_q1",
+    "topicId": "cne_p002",
+    "difficulty": "basic",
+    "type": "choice",
+    "prompt": "He ___ to school by bike every day.",
+    "choices": [
+      {"key": "A", "text": "go"},
+      {"key": "B", "text": "goes"},
+      {"key": "C", "text": "going"},
+      {"key": "D", "text": "gone"}
+    ],
+    "answer": "B",
+    "explanation": "主语 He 是第三人称单数，一般现在时动词要加 -es，go 变为 goes。"
+  },
+  {
+    "id": "cne_p002_q2",
+    "topicId": "cne_p002",
+    "difficulty": "standard",
+    "type": "short",
+    "prompt": "用括号内动词的适当形式填空：She ___ (like) music.",
+    "answer": "likes",
+    "accept": ["likes"],
+    "explanation": "主语 She 是第三人称单数，like 直接加 -s，变为 likes。"
+  }
+]

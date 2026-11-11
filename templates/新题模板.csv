@@ -1,0 +1,4 @@
+﻿topicId,type,difficulty,prompt,answer,explanation,choices,verify,accept,unordered
+cnm_p003,numeric,basic,7 × 8 = ?,56,口诀「七八五十六」。,,7*8,,
+cnm_p003,choice,standard,下面哪个数与 4×6 的结果相同？,B,4×6 = 24。,21|24|27|32,'24',,
+cnm_p003,short,standard,九的乘法口诀中，「六九」后面一句是什么？,七九六十三,口诀顺序是「六九五十四，七九六十三」。,,,七九六十三|63,

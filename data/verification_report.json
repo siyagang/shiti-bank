@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-11-11T20:44:24",
+  "source": "data/questions.json",
+  "total": 30,
+  "stats": {
+    "verified": 17,
+    "mismatch": 0,
+    "unverifiable": 13,
+    "error": 0
+  },
+  "verified_ids": [
+    "cnm_p001_q1",
+    "cnm_p001_q2",
+    "cnm_p002_q1",
+    "cnm_p002_q2",
+    "cnm_p003_q1",
+    "cnm_p004_q1",
+    "cnm_p004_q2",
+    "cnm_p005_q1",
+    "cnm_p005_q2",
+    "cnm_p006_q2",
+    "cnm_j001_q1",
+    "cnm_j001_q2",
+    "cnm_j002_q1",
+    "cnm_j002_q2",
+    "cnm_j003_q1",
+    "cnm_j003_q2",
+    "cnm_h001_q2"
+  ],
+  "mismatch": [],
+  "error": [],
+  "unverifiable": []
+}
