@@ -1,8 +1,6 @@
 # 我的中小学题库
 
-一个**自己用的**题库仓库：题目存成 JSON，格式与
-[`xiaoyang111222/cn-math-taxonomy`](https://github.com/xiaoyang111222/cn-math-taxonomy) 的 `data/questions.json` 完全一致，
-所以那套工具、页面、CDN 取数方式都能直接复用；同时自带校验脚本和一个能直接用的练习页。
+一个**自己用的**题库仓库：题目存成 JSON，格式与电视管家那套工具、页面、CDN 取数方式都能直接复用；同时自带校验脚本和一个能直接用的练习页。
 
 - `data/questions.json` — 题目（一个对象一道题）
 - `data/topics.json` — 知识点（题目按 topicId 挂在知识点下）
