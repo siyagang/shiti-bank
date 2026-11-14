@@ -18,14 +18,45 @@ from __future__ import annotations
 import base64
 import json
 import os
+import socket
 import subprocess
 import sys
+import urllib.error
+import urllib.parse
 import urllib.request
 
 REPO = "siyagang/shiti-bank"
 API = f"https://api.github.com/repos/{REPO}"
 BRANCH = "main"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+_OPENER = None
+
+
+def _make_opener():
+    """系统代理（注册表里的 127.0.0.1:21081）常常没在监听。
+
+    必须**在发请求前**就决定用不用代理：一旦走代理失败，urllib 会把请求对象的
+    host 改成代理地址，之后再"直连重试"其实还是在连那个死代理。
+    """
+    proxies = urllib.request.getproxies()
+    p = proxies.get("https") or proxies.get("http")
+    if p:
+        u = urllib.parse.urlsplit(p if "//" in p else "http://" + p)
+        try:
+            with socket.create_connection((u.hostname, u.port or 80), timeout=0.6):
+                return urllib.request.build_opener()
+        except OSError:
+            print(f"  （本地代理 {u.hostname}:{u.port} 未监听，改用直连）")
+    return urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
+def _open(r, timeout: int):
+    global _OPENER
+    if _OPENER is None:
+        _OPENER = _make_opener()
+    return _OPENER.open(r, timeout=timeout)
 
 
 def req(method: str, url: str, data=None):
@@ -36,7 +67,7 @@ def req(method: str, url: str, data=None):
         "Content-Type": "application/json",
         "User-Agent": "shiti-bank-push",
     })
-    with urllib.request.urlopen(r, timeout=180) as f:
+    with _open(r, 180) as f:
         raw = f.read()
     return json.loads(raw) if raw else {}
 
